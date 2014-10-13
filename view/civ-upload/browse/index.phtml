@@ -1,0 +1,27 @@
+<script>
+function returnToCKEditor(url) {
+    window.opener.CKEDITOR.tools.callFunction( <?php echo $this->funcNum?>, url );
+    window.close();
+}
+</script>
+
+<h1>Images</h1>
+
+<div class="row" style="margin-bottom: 20px;">
+      
+    <?php $c=0;?>
+    <?php foreach ($this->files as $key => $file):?>
+        
+        <div class="col-md-2">
+            <img onclick="returnToCKEditor('<?php echo '/uploads/' . $file?>')" src="/uploads/<?php echo $file?>" style="height:100px;">
+            <span><?php echo $file; ?></span>        
+        </div>
+        
+        <?php $b = (( ++$c % 6 == 0 ) ? true : false );?>      
+        <?php if ($b):?> 
+</div>
+<div class="row" style="margin-bottom: 24px;">
+        <?php endif;?>
+        
+    <?php endforeach;?>
+</div>
